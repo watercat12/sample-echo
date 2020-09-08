@@ -1,0 +1,16 @@
+version: "3.4"
+
+services:
+  test-go-docker:
+    image: "test/go-docker"
+    container_name: "sample-go-docker"
+    build:
+      context: .
+    command: bash -c "
+      go run .
+      "
+    volumes:
+      - .:/root
+      - $GOPATH:/go
+    ports:
+    - 1323:1323
