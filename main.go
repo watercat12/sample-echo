@@ -1,19 +1,32 @@
 package main
 
 import (
-	"github.com/labstack/echo/v4"
-	"net/http"
+	"fyne.io/fyne/app"
+	"fyne.io/fyne/widget"
 )
 
 func main() {
-	// Echo instance
-	e := echo.New()
+	//// Echo instance
+	//e := echo.New()
+	//
+	//// Routes
+	//e.GET("/ok", func(context echo.Context) error {
+	//	return context.JSON(http.StatusOK,"ok")
+	//})
+	//
+	//// Start server
+	//e.Logger.Fatal(e.Start(":1323"))
 
-	// Routes
-	e.GET("/ok", func(context echo.Context) error {
-		return context.JSON(http.StatusOK,"ok")
-	})
+	a := app.New()
+	w := a.NewWindow("Hello")
 
-	// Start server
-	e.Logger.Fatal(e.Start(":1323"))
+	hello := widget.NewLabel("Hello Fyne!")
+	w.SetContent(widget.NewVBox(
+		hello,
+		widget.NewButton("Hi!", func() {
+			hello.SetText("Welcome :)")
+		}),
+	))
+
+	w.ShowAndRun()
 }
